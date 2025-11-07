@@ -1,0 +1,16 @@
+# docker-compose.yml (Gitea seul)
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    ports:
+      - "3000:3000"
+    environment:
+      - GITEA__server__ROOT_URL=http://host.docker.internal:3000/
+      - GITEA__webhook__ALLOWED_HOST_LIST=*
+    volumes:
+      - gitea:/data
+    restart: unless-stopped
+
+volumes:
+  gitea:
